@@ -1,0 +1,219 @@
+// variables
+$mainColor: #444;
+$mainBackground: #fff;
+
+$container: 600px;
+
+
+
+$textFont-size: 1rem;  // 16px
+$linkColor: blue;
+
+$breakpoints: (
+        xs: 0,
+        sm: 575px,
+        md: 768px,
+        lg: 1025px,
+        xl: 1200px,
+        xxl: 1440px
+);
+
+
+
+  //===========  mixins start ===========//
+
+// columns
+$columns: 12;
+$col: $columns;
+$mainFont: 'Lato', sans-serif;
+
+@mixin col($col, $columns) {
+  width: percentage($col/$columns);
+}
+
+
+//===========  mixins end ===========//
+
+@mixin col-create(){
+  @while $col > 0 {
+
+    .col-#{$col} {
+
+      @include col($col, $columns);
+    }
+
+    $col: $col - 1;
+  }
+}
+
+
+.container{
+  max-width: $container;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+// layout
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class^='col']{
+  width: 100%;
+  min-height: 1px;
+}
+
+@include col-create()
+
+
+// main styles
+
+body{
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+//buttons
+a, button{
+  transition: .3s ease-in;
+  transition-property: color, background-color, opacity;
+  svg{
+    fill:currentColor;
+  }
+}
+button, .button{
+  cursor: pointer;
+}
+
+body{
+  background-image: url('../img/Layer 41.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-height: 100vh;
+}
+.container{
+  margin-top: 145px;
+}
+.tabs{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  background: #2b3040;
+   padding: 0 45px;
+  a{
+  font-size: 1rem;
+  font-family: $mainFont;
+  color: rgb(251, 251, 251);
+  line-height: 1.75;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 10px;
+  }
+  li{
+    height: 115px;
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.tabs li:hover, .tabs li.active{
+border-bottom: 2px solid #fff;
+}
+
+.tabs li.active a,
+.tabs li a:hover {
+  opacity: 1;
+  top: 0;
+}
+
+.tabs-content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 45px;
+  background: #212534;
+  height: 420px;
+  &__game{
+  font-size: 2rem;
+  font-family: $mainFont;
+  color: rgb(255, 255, 255);
+  line-height: 0.625;
+  font-weight: normal;
+  margin: 10px 0;
+  }
+  &__release{
+  font-size: 0.875rem;
+  font-family: $mainFont;
+  color: rgb(253, 253, 253);
+  line-height: 1.429;
+  font-weight: lighter;
+  }
+  &__about{
+  font-size: 0.875rem;
+  font-family: $mainFont;
+  color: rgb(183, 186, 205);
+  line-height: 1.571;
+  text-align: left;
+  max-width: 306px;
+  margin: 40px 0;
+  }
+  &__rating{
+    margin-top: 20px;
+    text-align: center;
+  }
+  &__rait{
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+}
+
+.tabs-panel {
+  display: none;
+}
+.row{
+  max-width: 515px;
+  display: flex;
+  justify-content: space-between;
+  .col-8{
+    position: relative;
+  }
+}
+.tabs-panel.active {
+  display: block;
+}
+.tabs-content-buy{
+  display: flex;
+  justify-content: space-between;
+  &__discount{
+  font-size: 0.75rem;
+  font-family: $mainFont;
+  color: rgb(254, 220, 63);
+  font-weight: bold;
+  line-height: 1.667;
+  }
+  &__price{
+  font-size: 2rem;
+  font-family: $mainFont;
+  color: rgb(255, 255, 255);
+  line-height: 0.625;
+  }
+  &__btn{
+  font-size: 1rem;
+  font-family: $mainFont;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center;
+  border-radius: 2px;
+  background-color: #13e28d;
+  border: none;
+  width: 164px;
+  height: 55px;
+  }
+}
